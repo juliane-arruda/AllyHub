@@ -1,0 +1,76 @@
+<!doctype html>
+<html ng-app="challenge">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="./style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+  <script src="index.js"></script>
+</head>
+
+<body ng-controller="CourseController as courseController">
+  <!-- <div>
+    <label>Name:</label>
+    <input type="text" ng-model="yourName" placeholder="Enter a name here">
+    <hr>
+    <h1>Hello {{yourName}}!</h1>
+  </div> -->
+  <div class="container">
+    <div class="logo">
+      <img src="./Logo.png" alt="Logo">
+    </div>
+
+    <div>
+      <h1 class="title">Cadastro de Cursos</h1>
+      <form ng-submit="courseController.addCourse()">
+        <div>
+          <label for="name">Nome</label>
+          <input type="text" id="name" ng-model="courseController.name" required />
+        </div>
+        <div>
+          <label for="startDate">Data de Início</label>
+          <input type="date" id="startDate" ng-model="courseController.startDate" required />
+        </div>
+        <div>
+          <label for="endDate">Data de Fim</label>
+          <input type="date" id="endDate" ng-model="courseController.endDate" required />
+        </div>
+        <div>
+          <label for="duration">Duração (Semanas)</label>
+          <input type="number" id="duration" ng-model="courseController.duration" required />
+        </div>
+        <div>
+          <label for="description">Descrição</label>
+          <textarea id="description" ng-model="courseController.description"></textarea>
+        </div>
+        <div class="button">
+          <button type="submit">Cadastrar</button>
+        </div>
+      </form>
+    </div>
+
+    <div>
+      <h1>Lista de Cursos</h1>
+      <input type="search" placeholder="buscar por nome..." ng-model="search">
+      <table cellspacing="1" bgcolor="#000000">
+        <thead>
+          <tr bgcolor="#e9e9e9">
+            <th>Nome</th>
+            <th>Duração</th>
+            <th>Data de Início</th>
+            <th>Data de Término</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr bgcolor="#ffffff" ng-repeat="course in courseController.courses | filter:({name: search}) track by $index">
+            <td>{{course.name}}</td>
+            <td>{{course.duration}}</td>
+            <td>{{course.startDate | date: 'dd/MM/yyyy'}}</td>
+            <td>{{course.endDate | date: 'dd/MM/yyyy'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+
+</html>
